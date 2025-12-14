@@ -63,8 +63,8 @@ struct GpiCore {
 };
 
 struct GpoCore {
-  uint32_t last = 0;
-  void write(uint32_t v) { last = v; }
+  uint32_t ledOutput = 0;
+  void write(uint32_t v) { ledOutput = v; }
 };
 
 struct PwmCore {
@@ -287,7 +287,7 @@ static void test_switch_decode_and_led_mirror() {
   EXPECT_EQ_INT(intLim, (int)intChoice);
 
   dispTempLimit(&led, extLim, intLim);
-  EXPECT_EQ_U32(led.last, (uint32_t)((intChoice << 8) | extChoice));
+  EXPECT_EQ_U32(led.ledOutput, (uint32_t)((intChoice << 8) | extChoice));
 
   extFmt = getTempFormat(&sw, 0);
   intFmt = getTempFormat(&sw, 1);
@@ -308,7 +308,7 @@ static void test_switch_decode_and_led_mirror() {
   EXPECT_EQ_INT(intLim, (int)intChoice);
 
   dispTempLimit(&led, extLim, intLim);
-  EXPECT_EQ_U32(led.last, (uint32_t)((intChoice << 8) | extChoice));
+  EXPECT_EQ_U32(led.ledOutput, (uint32_t)((intChoice << 8) | extChoice));
 
   extFmt = getTempFormat(&sw, 0);
   intFmt = getTempFormat(&sw, 1);
@@ -329,7 +329,7 @@ static void test_switch_decode_and_led_mirror() {
   EXPECT_EQ_INT(intLim, (int)intChoice);
 
   dispTempLimit(&led, extLim, intLim);
-  EXPECT_EQ_U32(led.last, (uint32_t)((intChoice << 8) | extChoice));
+  EXPECT_EQ_U32(led.ledOutput, (uint32_t)((intChoice << 8) | extChoice));
 
   extFmt = getTempFormat(&sw, 0);
   intFmt = getTempFormat(&sw, 1);
@@ -350,7 +350,7 @@ static void test_switch_decode_and_led_mirror() {
   EXPECT_EQ_INT(intLim, (int)intChoice);
 
   dispTempLimit(&led, extLim, intLim);
-  EXPECT_EQ_U32(led.last, (uint32_t)((intChoice << 8) | extChoice));
+  EXPECT_EQ_U32(led.ledOutput, (uint32_t)((intChoice << 8) | extChoice));
 
   extFmt = getTempFormat(&sw, 0);
   intFmt = getTempFormat(&sw, 1);
@@ -707,4 +707,3 @@ int main() {
   std::printf("\nTESTS FAILED   count=%d\n", g_fail);
   return 1;
 }
-
