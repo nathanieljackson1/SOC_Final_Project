@@ -19,34 +19,34 @@ static int g_fail = 0;
 
 // checks expected int value
 #define EXPECT_EQ_INT(a,b) do { \
-  int _a = (a), _b = (b); \
-  if (_a != _b) { \
-    std::printf("[FAIL] %s != %s  (%d vs %d)\n", #a, #b, _a, _b); \
+  int a_val = (a), b_val = (b); \
+  if (a_val != b_val) { \
+    std::printf("[FAIL] %s != %s  (%d vs %d)\n", #a, #b, a_val, b_val); \
     g_fail++; \
   } else { \
-    std::printf("[PASS] %s == %s  (%d)\n", #a, #b, _a); \
+    std::printf("[PASS] %s == %s  (%d)\n", #a, #b, a_val); \
   } \
 } while (0)
 
 // checks expected uint32_t value
 #define EXPECT_EQ_U32(a,b) do { \
-  uint32_t _a = (a), _b = (b); \
-  if (_a != _b) { \
-    std::printf("[FAIL] %s != %s  (0x%08X vs 0x%08X)\n", #a, #b, _a, _b); \
+  uint32_t a_val = (a), b_val = (b); \
+  if (a_val != b_val) { \
+    std::printf("[FAIL] %s != %s  (0x%08X vs 0x%08X)\n", #a, #b, a_val, b_val); \
     g_fail++; \
   } else { \
-    std::printf("[PASS] %s == %s  (0x%08X)\n", #a, #b, _a); \
+    std::printf("[PASS] %s == %s  (0x%08X)\n", #a, #b, a_val); \
   } \
 } while (0)
 
 // checks expected float with tolerance = eps
 #define EXPECT_NEAR(a,b,eps) do { \
-  float _a = (a), _b = (b); \
-  if (std::fabs(_a - _b) > (eps)) { \
-    std::printf("[FAIL] |%s-%s| > %g  (%.6f vs %.6f)\n", #a, #b, (double)(eps), _a, _b); \
+  float a_val = (a), b_val = (b); \
+  if (std::fabs(a_val - b_val) > (eps)) { \
+    std::printf("[FAIL] |%s-%s| > %g  (%.6f vs %.6f)\n", #a, #b, (double)(eps), a_val, b_val); \
     g_fail++; \
   } else { \
-    std::printf("[PASS] %s ~= %s  (%.6f)\n", #a, #b, _a); \
+    std::printf("[PASS] %s ~= %s  (%.6f)\n", #a, #b, a_val); \
   } \
 } while (0)
 
@@ -707,3 +707,4 @@ int main() {
   std::printf("\nTESTS FAILED   count=%d\n", g_fail);
   return 1;
 }
+
