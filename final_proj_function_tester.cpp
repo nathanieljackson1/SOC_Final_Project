@@ -90,7 +90,7 @@ struct SsegCore {
 
 // Project Functions //////////////////////////////////////////////////
 
-// reads either SW0-6 or SW8-14 based on segSel input and returns SW value
+// reads either SW0-6 or SW8-14 based on segsSel input and returns SW value
 // this is used at the temperature limit input
 int getTempLimit(GpiCore *sw_p, int segsSel) {
    int s, limit;
@@ -114,7 +114,7 @@ void dispTempLimit(GpoCore *led_p, int lowerLim, int upperLim) {
    led_p->write(ledDisp);
 }
 
-// reads either SW7 or SW5 based on segSel input and returns SW value
+// reads either SW7 or SW5 based on segsSel input and returns SW value
 // this is used at the temperature format select
 int getTempFormat(GpiCore *sw_p, int segsSel) {
    int s;
@@ -127,7 +127,7 @@ int getTempFormat(GpiCore *sw_p, int segsSel) {
 
 }
 
-// sets a RGB to red if color = 1, or green if color = 0. RGB sel determines which RGB is set.
+// sets a RGB to red if color = 1, or green if color = 0. rgbPos determines which RGB is set.
 // Used to display if a temperature surpassed the user selected limit
 void setRGB(PwmCore *pwm_p, int color, int rgbPos) {
    double bright, duty;
@@ -165,7 +165,7 @@ void clearDisp(SsegCore *sseg_p) {
 }
 
 // Displays the appripriate temperature based on user input (C or F). dislpays first decimal if double digit temp.
-// segSel determines if it is on the right (0) or left (1) side of the sevensegment
+// segsSel determines if it is on the right (0) or left (1) side of the sevensegment
 // displays whole number if triple digit temp. Outputs bool flagging if the displayed temp is at least 100
 bool dispTemp(SsegCore *sseg_p, float tmpC, float tmpF, int isFer, int segsSel) {
    const uint8_t BLANK = 0xff;
@@ -707,3 +707,4 @@ int main() {
   std::printf("\nTESTS FAILED   count=%d\n", g_fail);
   return 1;
 }
+
